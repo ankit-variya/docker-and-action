@@ -22,6 +22,6 @@ app.get('/docker', (req, res) => {
     res.send("completed docker build")
 })
 
-app.listen(5000, () => {
-    console.log('server started on', 5000);
+app.listen(8080, () => {
+    console.log('server started on', 8080);
 })
