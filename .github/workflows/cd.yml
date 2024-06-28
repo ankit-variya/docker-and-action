@@ -1,0 +1,21 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI pipeline"]
+    types: 
+      - completed
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Pull Docker image
+      run: sudo docker pull ankit021/docker-and-action:latest
+    - name: Delete Old docker container
+      run: sudo docker rm -f docker-and-action-container || true
+    - name: Run Docker Container
+      run: sudo docker run -d -p 8080:8080 --name docker-and-action-container ankit021/docker-and-action
